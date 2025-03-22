@@ -1,13 +1,24 @@
 import streamlit as st
 
-import streamlit as st
+# Initialize session state variables
+if 'input_text' not in st.session_state:
+    st.session_state.input_text = ''
+if 'results' not in st.session_state:
+    st.session_state.results = []
 
-if 'user_input' not in st.session_state:
-    st.session_state['user_input'] = ''
+# Function to process input and update results
+def process_input():
+    st.session_state.results.append(st.session_state.input_text)
+    st.session_state.input_text = ''  # Reset the input field
 
-user_input = st.text_input("Enter some text")
+# Input text box
+st.text_input("Enter some text", key='input_text')
 
-if user_input:
-    st.session_state['user_input'] = user_input
+# Button to process input
+st.button("Submit", on_click=process_input)
 
-st.write(f"You entered: {st.session_state['user_input']}")
+# Display results
+st.write("Results:")
+for result in st.session_state.results:
+    st.write(result)
+
