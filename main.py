@@ -1,10 +1,8 @@
 import streamlit as st
 
-if "counter" not in st.session_state:
-    st.session_state.counter = 0
+# Read a value
+st.write(st.session_state.key)  # Outputs: value
 
-st.session_state.counter += 1
-
-st.header(f"This page has run {st.session_state.counter} times.")
-
-st.button("Run it again")
+# Update a value
+st.session_state.key = 'value2'  # Attribute API
+st.session_state['key'] = 'value2'  # Dictionary-like API
