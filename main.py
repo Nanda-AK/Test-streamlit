@@ -1,8 +1,13 @@
 import streamlit as st
 
-# Read a value
-st.write(st.session_state.key)  # Outputs: value
+import streamlit as st
 
-# Update a value
-st.session_state.key = 'value2'  # Attribute API
-st.session_state['key'] = 'value2'  # Dictionary-like API
+if 'user_input' not in st.session_state:
+    st.session_state['user_input'] = ''
+
+user_input = st.text_input("Enter some text")
+
+if user_input:
+    st.session_state['user_input'] = user_input
+
+st.write(f"You entered: {st.session_state['user_input']}")
